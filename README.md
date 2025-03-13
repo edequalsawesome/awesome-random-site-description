@@ -1,13 +1,4 @@
 # Super-Swank Random Description Block
-Contributors: eDThomas
-Donate link: https://edequalsaweso.me/
-Tags: block, gutenberg, random, tagline, description, site-description
-Requires at least: 5.8
-Tested up to: 6.4
-Stable tag: 1.2.4
-Requires PHP: 7.0
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Add a block that cycles through different taglines/descriptions each time your page loads or when visitors navigate between pages, because you're a real extra silly goose.
 
