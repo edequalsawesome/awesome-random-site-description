@@ -124,4 +124,8 @@ Initial release
 5. **Bulk Import**: For adding many taglines at once, use the bulk import feature in the sidebar
 6. **File Import**: Import taglines directly from CSV or Markdown files
 
+<<<<<<< HEAD
 For more detailed instructions and examples, visit [our website](https://edequalsaweso.me/random-site-description).
+=======
+For more detailed instructions and examples, visit [our website](https://edequalsaweso.me/random-site-description).
+>>>>>>> main
