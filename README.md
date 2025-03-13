@@ -2,7 +2,7 @@
 
 Add a block that cycles through different taglines/descriptions each time your page loads or when visitors navigate between pages, because you're a real extra silly goose.
 
-== Description ==
+## Description
 
 The Super-Swank Random Description Block allows you to create a collection of taglines or descriptions that will randomly cycle each time a page is loaded or when visitors navigate between pages. It's perfect for adding variety and keeping your site feeling fresh and dynamic.
 
@@ -31,41 +31,36 @@ The Super-Swank Random Description Block allows you to create a collection of ta
 * Displaying random quotes or testimonials
 * Creating dynamic and engaging user experiences
 
-== Installation ==
+## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/super-swank-random-description-block` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the Gutenberg editor to add the 'Super-Swank Random Description' block to your pages or templates
 4. Add as many taglines as you'd like, and the block will cycle through them randomly
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-= Can I control which tagline shows up? =
+*Can I control which tagline shows up?*
 
 The plugin is designed to select taglines randomly, ensuring all taglines are shown before repeating any. You cannot control which specific tagline appears on a specific page load.
 
-= Will the same visitor see different taglines? =
+*Will the same visitor see different taglines?*
 
 Yes, every time the page refreshes or when a visitor navigates to a different page and back, they'll likely see a different tagline.
 
-= Can I style each tagline differently? =
+*Can I style each tagline differently?*
 
 Currently, all taglines in a single block share the same styling. However, you can add multiple instances of the block with different styling if needed.
 
-= Does this work with any theme? =
+*Does this work with any theme?*
 
 Yes, the Super-Swank Random Description Block is designed to work with any WordPress theme that supports Gutenberg blocks.
 
-= Can I use HTML in my taglines? =
+*Can I use HTML in my taglines?*
 
 For security reasons, the plugin escapes HTML content. You can use the block's formatting options for styling instead.
 
-== Screenshots ==
-
-1. Editor view with multiple taglines added
-2. Block settings panel showing formatting options
-3. Frontend display of the random tagline
-4. Bulk import feature for adding multiple taglines at once
+---
 
 == Changelog ==
 
