@@ -6,7 +6,6 @@ import {
     PanelBody,
     TextControl,
     Button,
-    SelectControl,
     TextareaControl,
     Placeholder,
     Modal
@@ -29,7 +28,6 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes, clientId, isSelected }) {
     const {
         taglines = [],
-        textAlign,
         style
     } = attributes;
 
@@ -104,9 +102,7 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
     }, [siteDescription]);
 
     // Block props with styles
-    const blockProps = useBlockProps({
-        className: `has-text-align-${textAlign || 'center'}`
-    });
+    const blockProps = useBlockProps();
 
     // Combine classes
     blockProps.className = `${blockProps.className} ${attributes.className || ''}`;
@@ -152,19 +148,6 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             </Button>
                         </div>
                     </div>
-                </PanelBody>
-                
-                <PanelBody title={__('Layout', 'super-swank-random-description-block')} initialOpen={false}>
-                    <SelectControl
-                        label={__('Text Alignment', 'super-swank-random-description-block')}
-                        value={textAlign}
-                        options={[
-                            { label: __('Left', 'super-swank-random-description-block'), value: 'left' },
-                            { label: __('Center', 'super-swank-random-description-block'), value: 'center' },
-                            { label: __('Right', 'super-swank-random-description-block'), value: 'right' },
-                        ]}
-                        onChange={(value) => setAttributes({ textAlign: value })}
-                    />
                 </PanelBody>
             </InspectorControls>
             

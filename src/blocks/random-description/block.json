@@ -14,64 +14,35 @@
     "spacing": {
       "margin": ["top", "bottom"],
       "padding": ["top", "right", "bottom", "left"],
-      "blockGap": false
+      "blockGap": true
     },
     "className": true,
-    "styles": true
+    "styles": true,
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "fontStyle": true,
+      "fontWeight": true
+    },
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true
+    },
+    "align": true,
+    "alignText": true
   },
   "attributes": {
     "taglines": {
       "type": "array",
       "default": []
     },
-    "fontSize": {
-      "type": "string",
-      "default": ""
-    },
-    "customFontSize": {
-      "type": "number"
-    },
-    "lineHeight": {
-      "type": "number"
-    },
     "textAlign": {
       "type": "string",
       "default": "center"
     },
-    "textColor": {
-      "type": "string"
-    },
-    "customTextColor": {
-      "type": "string"
-    },
-    "backgroundColor": {
-      "type": "string"
-    },
-    "customBackgroundColor": {
-      "type": "string"
-    },
-    "background": {
-      "type": "object",
-      "default": {
-        "color": ""
-      }
-    },
     "style": {
-      "type": "object",
-      "default": {
-        "spacing": {
-          "padding": {
-            "top": "1em",
-            "right": "1em",
-            "bottom": "1em",
-            "left": "1em"
-          },
-          "margin": {
-            "top": "0",
-            "bottom": "0"
-          }
-        }
-      }
+      "type": "object"
     }
   },
   "editorScript": "file:../../../build/index.js",

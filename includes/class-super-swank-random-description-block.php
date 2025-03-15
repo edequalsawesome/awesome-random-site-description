@@ -173,6 +173,22 @@ class Super_Swank_Random_Description_Block {
 		if ( isset( $attributes['textAlign'] ) ) {
 			$class_names[] = 'has-text-align-' . $attributes['textAlign'];
 		}
+
+		// Add color classes if set
+		if ( ! empty( $attributes['textColor'] ) ) {
+			$class_names[] = 'has-' . $attributes['textColor'] . '-color';
+		}
+		if ( ! empty( $attributes['backgroundColor'] ) ) {
+			$class_names[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
+		}
+		if ( ! empty( $attributes['gradient'] ) ) {
+			$class_names[] = 'has-' . $attributes['gradient'] . '-gradient-background';
+		}
+
+		// Add font size class if set
+		if ( ! empty( $attributes['fontSize'] ) ) {
+			$class_names[] = 'has-' . $attributes['fontSize'] . '-font-size';
+		}
 		
 		// Add custom className if set
 		if ( isset( $attributes['className'] ) ) {
@@ -214,39 +230,37 @@ class Super_Swank_Random_Description_Block {
 
 		// Get style attribute
 		$style = isset( $attributes['style'] ) ? $attributes['style'] : array();
-
+		
 		// Handle spacing styles
-		if ( ! empty( $style['spacing'] ) ) {
+		if ( isset( $style['spacing'] ) ) {
 			$spacing = $style['spacing'];
-
+			
 			// Handle padding
-			if ( ! empty( $spacing['padding'] ) ) {
-				$padding = $spacing['padding'];
-				$padding_css = '';
-
-				$padding_css .= isset( $padding['top'] ) ? $padding['top'] . ' ' : '0 ';
-				$padding_css .= isset( $padding['right'] ) ? $padding['right'] . ' ' : '0 ';
-				$padding_css .= isset( $padding['bottom'] ) ? $padding['bottom'] . ' ' : '0 ';
-				$padding_css .= isset( $padding['left'] ) ? $padding['left'] : '0';
-
-				$styles[] = 'padding:' . $padding_css;
+			if ( isset( $spacing['padding'] ) ) {
+				foreach ( $spacing['padding'] as $side => $value ) {
+					// Convert var:preset|spacing|60 to var(--wp--preset--spacing--60)
+					if ( strpos( $value, 'var:preset|spacing|' ) === 0 ) {
+						$spacing_value = str_replace( 'var:preset|spacing|', '', $value );
+						$value = sprintf( 'var(--wp--preset--spacing--%s)', $spacing_value );
+					}
+					$styles[] = sprintf( 'padding-%s: %s', $side, $value );
+				}
 			}
-
+			
 			// Handle margin
-			if ( ! empty( $spacing['margin'] ) ) {
-				$margin = $spacing['margin'];
-				$margin_css = '';
-
-				$margin_css .= isset( $margin['top'] ) ? $margin['top'] . ' ' : '0 ';
-				$margin_css .= '0 '; // Right margin is not supported
-				$margin_css .= isset( $margin['bottom'] ) ? $margin['bottom'] . ' ' : '0 ';
-				$margin_css .= '0'; // Left margin is not supported
-
-				$styles[] = 'margin:' . $margin_css;
+			if ( isset( $spacing['margin'] ) ) {
+				foreach ( $spacing['margin'] as $side => $value ) {
+					// Convert var:preset|spacing|60 to var(--wp--preset--spacing--60)
+					if ( strpos( $value, 'var:preset|spacing|' ) === 0 ) {
+						$spacing_value = str_replace( 'var:preset|spacing|', '', $value );
+						$value = sprintf( 'var(--wp--preset--spacing--%s)', $spacing_value );
+					}
+					$styles[] = sprintf( 'margin-%s: %s', $side, $value );
+				}
 			}
 		}
 
-		return implode( ';', $styles );
+		return ! empty( $styles ) ? implode( '; ', $styles ) : '';
 	}
 
 	/**
