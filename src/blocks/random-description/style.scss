@@ -1,0 +1,14 @@
+/**
+ * Random Description Block Frontend Styles
+ */
+
+.wp-block-random-description {
+  position: relative;
+  
+  .random-description-content {
+    text-align: inherit;
+    p {
+      margin: 0;
+    }
+  }
+} 

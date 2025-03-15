@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "super-swank-random-description/random-description",
+  "title": "Random Description",
+  "category": "widgets",
+  "icon": "format-quote",
+  "description": "Displays a random site description from a list of taglines each time the page is loaded.",
+  "version": "1.3.0",
+  "textdomain": "super-swank-random-description-block",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "taglines": {
+      "type": "array",
+      "default": []
+    },
+    "fontSize": {
+      "type": "string",
+      "default": ""
+    },
+    "customFontSize": {
+      "type": "number"
+    },
+    "lineHeight": {
+      "type": "number"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "background": {
+      "type": "object",
+      "default": {
+        "color": ""
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "1em",
+        "right": "1em",
+        "bottom": "1em",
+        "left": "1em"
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    }
+  },
+  "editorScript": "file:../../../build/index.js",
+  "editorStyle": "file:../../../build/index.css",
+  "style": "file:../../../build/style-index.css"
+} 

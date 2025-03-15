@@ -64,6 +64,17 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 
 == Changelog ==
 
+= 1.3.0 =
+* Simplified CSS class structure for improved styling and compatibility
+* Updated main block CSS class from `.wp-block-random-description-block-random-description` to `.wp-block-random-description`
+* Improved overall code organization and maintainability
+
+= 1.2.5 =
+* Restructured plugin folder to conform to WordPress/Gutenberg best practices
+* Improved organization of block assets for better maintainability
+* Implemented class-based approach in PHP code for improved modularity
+* Enhanced build system for optimized asset delivery
+
 = 1.2.4 =
 * Added auto-import feature that populates your block with the site's existing tagline when first added
 * Improved initial user experience by providing a pre-populated tagline to start with
@@ -91,6 +102,12 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+This update simplifies the CSS class structure, making it easier to style the block with custom CSS. If you have any custom styles targeting the old class name, please update them to use the new simplified class name.
+
+= 1.2.5 =
+This update includes a major restructuring of the plugin codebase to follow modern WordPress development best practices, resulting in improved performance and maintainability.
 
 = 1.2.4 =
 This update automatically imports your existing site tagline when adding the block for the first time, giving you a better starting experience.

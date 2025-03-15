@@ -1,0 +1,98 @@
+/**
+ * Random Description Block Editor Styles
+ */
+
+.wp-block-random-description {
+  .taglines-panel {
+    margin-bottom: 1em;
+    
+    .tagline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+      
+      .components-base-control {
+        flex: 1;
+        margin-bottom: 0;
+      }
+      
+      .components-button {
+        margin-left: 0.5em;
+      }
+    }
+    
+    .tagline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      margin-top: 1em;
+      
+      .components-button {
+        display: flex;
+        align-items: center;
+        
+        svg {
+          margin-right: 5px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  
+  .random-description-preview {
+    padding: 1em;
+    
+    .random-description-content {
+      position: relative;
+      
+      p {
+        margin: 0 0 0.5em 0;
+        font-style: italic;
+      }
+      
+      .random-description-info {
+        font-size: 0.8em;
+        opacity: 0.7;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.bulk-import-modal {
+  .bulk-import-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1em 0;
+    
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    span {
+      margin: 0 10px;
+      font-weight: bold;
+      color: #757575;
+    }
+  }
+  
+  .bulk-import-file {
+    margin-bottom: 1em;
+    
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+  }
+  
+  .bulk-import-actions {
+    display: flex;
+    gap: 0.5em;
+    justify-content: flex-end;
+    margin-top: 1em;
+  }
+} 

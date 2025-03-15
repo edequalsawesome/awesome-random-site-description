@@ -1,0 +1,74 @@
+# Nova editor files
+.nova/
+
+# WordPress core files that shouldn't be in plugins
+wp-admin/
+wp-includes/
+wp-content/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# WordPress environment files
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/cache/
+wp-content/backups/
+
+# Node modules (if you use any build tools)
+node_modules/
+
+# Composer packages (if you use Composer)
+vendor/
+
+# Log files
+*.log
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore node dependency directories
+node_modules/
+
+# Ignore build directories
+/build/
+!/build/index.php
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.nova/
+
+# Ignore npm package files
+package-lock.json
+npm-debug.log
+yarn-error.log
+yarn-debug.log 
