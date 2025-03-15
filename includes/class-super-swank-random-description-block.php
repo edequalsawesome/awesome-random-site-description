@@ -162,12 +162,26 @@ class Super_Swank_Random_Description_Block {
 		$styles = $this->build_styles( $attributes );
 
 		// Build class names.
-		$class_names = 'wp-block-random-description';
+		$class_names = array('wp-block-random-description');
+		
+		// Add alignment class if set
 		if ( isset( $attributes['align'] ) ) {
-			$class_names .= ' align' . $attributes['align'];
+			$class_names[] = 'align' . $attributes['align'];
 		}
+		
+		// Add text alignment class if set
 		if ( isset( $attributes['textAlign'] ) ) {
-			$class_names .= ' has-text-align-' . $attributes['textAlign'];
+			$class_names[] = 'has-text-align-' . $attributes['textAlign'];
+		}
+		
+		// Add custom className if set
+		if ( isset( $attributes['className'] ) ) {
+			$class_names[] = $attributes['className'];
+		}
+
+		// Add block style class if set
+		if ( isset( $attributes['style']['className'] ) ) {
+			$class_names[] = $attributes['style']['className'];
 		}
 
 		// Encode taglines for front-end JavaScript.
@@ -180,7 +194,7 @@ class Super_Swank_Random_Description_Block {
 					<p>%4$s</p>
 				</div>
 			</div>',
-			esc_attr( $class_names ),
+			esc_attr( implode( ' ', $class_names ) ),
 			esc_attr( $styles ),
 			$taglines_json,
 			esc_html( $first_tagline )
@@ -198,94 +212,38 @@ class Super_Swank_Random_Description_Block {
 	private function build_styles( $attributes ) {
 		$styles = array();
 
-		// Text color.
-		if ( ! empty( $attributes['textColor'] ) ) {
-			$styles[] = 'color:' . $attributes['textColor'];
-		} elseif ( ! empty( $attributes['customTextColor'] ) ) {
-			$styles[] = 'color:' . $attributes['customTextColor'];
-		}
+		// Get style attribute
+		$style = isset( $attributes['style'] ) ? $attributes['style'] : array();
 
-		// Background color.
-		if ( ! empty( $attributes['backgroundColor'] ) ) {
-			$styles[] = 'background-color:' . $attributes['backgroundColor'];
-		} elseif ( ! empty( $attributes['customBackgroundColor'] ) ) {
-			$styles[] = 'background-color:' . $attributes['customBackgroundColor'];
-		}
+		// Handle spacing styles
+		if ( ! empty( $style['spacing'] ) ) {
+			$spacing = $style['spacing'];
 
-		// Font size.
-		if ( ! empty( $attributes['fontSize'] ) ) {
-			$styles[] = 'font-size:' . $attributes['fontSize'];
-		} elseif ( ! empty( $attributes['customFontSize'] ) ) {
-			$styles[] = 'font-size:' . $attributes['customFontSize'] . 'px';
-		}
+			// Handle padding
+			if ( ! empty( $spacing['padding'] ) ) {
+				$padding = $spacing['padding'];
+				$padding_css = '';
 
-		// Line height.
-		if ( ! empty( $attributes['lineHeight'] ) ) {
-			$styles[] = 'line-height:' . $attributes['lineHeight'];
-		}
+				$padding_css .= isset( $padding['top'] ) ? $padding['top'] . ' ' : '0 ';
+				$padding_css .= isset( $padding['right'] ) ? $padding['right'] . ' ' : '0 ';
+				$padding_css .= isset( $padding['bottom'] ) ? $padding['bottom'] . ' ' : '0 ';
+				$padding_css .= isset( $padding['left'] ) ? $padding['left'] : '0';
 
-		// Padding.
-		if ( ! empty( $attributes['padding'] ) ) {
-			$padding = $attributes['padding'];
-			$padding_css = '';
-
-			if ( isset( $padding['top'] ) ) {
-				$padding_css .= $padding['top'] . ' ';
-			} else {
-				$padding_css .= '0 ';
+				$styles[] = 'padding:' . $padding_css;
 			}
 
-			if ( isset( $padding['right'] ) ) {
-				$padding_css .= $padding['right'] . ' ';
-			} else {
-				$padding_css .= '0 ';
+			// Handle margin
+			if ( ! empty( $spacing['margin'] ) ) {
+				$margin = $spacing['margin'];
+				$margin_css = '';
+
+				$margin_css .= isset( $margin['top'] ) ? $margin['top'] . ' ' : '0 ';
+				$margin_css .= '0 '; // Right margin is not supported
+				$margin_css .= isset( $margin['bottom'] ) ? $margin['bottom'] . ' ' : '0 ';
+				$margin_css .= '0'; // Left margin is not supported
+
+				$styles[] = 'margin:' . $margin_css;
 			}
-
-			if ( isset( $padding['bottom'] ) ) {
-				$padding_css .= $padding['bottom'] . ' ';
-			} else {
-				$padding_css .= '0 ';
-			}
-
-			if ( isset( $padding['left'] ) ) {
-				$padding_css .= $padding['left'];
-			} else {
-				$padding_css .= '0';
-			}
-
-			$styles[] = 'padding:' . $padding_css;
-		}
-
-		// Margin.
-		if ( ! empty( $attributes['margin'] ) ) {
-			$margin = $attributes['margin'];
-			$margin_css = '';
-
-			if ( isset( $margin['top'] ) ) {
-				$margin_css .= $margin['top'] . ' ';
-			} else {
-				$margin_css .= '0 ';
-			}
-
-			if ( isset( $margin['right'] ) ) {
-				$margin_css .= $margin['right'] . ' ';
-			} else {
-				$margin_css .= '0 ';
-			}
-
-			if ( isset( $margin['bottom'] ) ) {
-				$margin_css .= $margin['bottom'] . ' ';
-			} else {
-				$margin_css .= '0 ';
-			}
-
-			if ( isset( $margin['left'] ) ) {
-				$margin_css .= $margin['left'];
-			} else {
-				$margin_css .= '0';
-			}
-
-			$styles[] = 'margin:' . $margin_css;
 		}
 
 		return implode( ';', $styles );

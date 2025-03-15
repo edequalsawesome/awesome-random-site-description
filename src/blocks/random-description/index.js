@@ -5,6 +5,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import './style.scss';
 import './editor.scss';
+import './styles';
 import Edit from './edit';
 import metadata from './block.json';
 

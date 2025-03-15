@@ -11,19 +11,13 @@
   "supports": {
     "html": false,
     "align": ["wide", "full"],
-    "color": {
-      "background": true,
-      "text": true,
-      "gradients": true
-    },
-    "typography": {
-      "fontSize": true,
-      "lineHeight": true
-    },
     "spacing": {
-      "margin": true,
-      "padding": true
-    }
+      "margin": ["top", "bottom"],
+      "padding": ["top", "right", "bottom", "left"],
+      "blockGap": false
+    },
+    "className": true,
+    "styles": true
   },
   "attributes": {
     "taglines": {
@@ -62,22 +56,21 @@
         "color": ""
       }
     },
-    "padding": {
+    "style": {
       "type": "object",
       "default": {
-        "top": "1em",
-        "right": "1em",
-        "bottom": "1em",
-        "left": "1em"
-      }
-    },
-    "margin": {
-      "type": "object",
-      "default": {
-        "top": "0",
-        "right": "0",
-        "bottom": "0",
-        "left": "0"
+        "spacing": {
+          "padding": {
+            "top": "1em",
+            "right": "1em",
+            "bottom": "1em",
+            "left": "1em"
+          },
+          "margin": {
+            "top": "0",
+            "bottom": "0"
+          }
+        }
       }
     }
   },

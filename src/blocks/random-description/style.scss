@@ -11,4 +11,36 @@
       margin: 0;
     }
   }
+
+  // Block Styles
+  &.is-style-fancy {
+    font-family: 'Georgia', serif;
+    font-size: 1.25em;
+    line-height: 1.6;
+    font-style: italic;
+    color: #2c3338;
+    background-color: #f0f0f1;
+    border-left: 4px solid #2271b1;
+    padding: 1.5em;
+  }
+
+  &.is-style-minimal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 1em;
+    line-height: 1.4;
+    color: #1e1e1e;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &.is-style-bold {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #1e1e1e;
+    padding: 1.5em;
+    text-align: center;
+  }
 } 

@@ -6,27 +6,17 @@ import {
     PanelBody,
     TextControl,
     Button,
-    ToggleControl,
     SelectControl,
     TextareaControl,
-    RadioControl,
     Placeholder,
-    Dashicon,
-    Modal,
-    Panel
+    Modal
 } from '@wordpress/components';
 import {
     useBlockProps,
-    InspectorControls,
-    RichText,
-    PanelColorSettings,
-    ContrastChecker,
-    FontSizePicker,
-    LineHeightControl
+    InspectorControls
 } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { createBlock } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
@@ -40,15 +30,7 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
     const {
         taglines = [],
         textAlign,
-        textColor,
-        customTextColor,
-        backgroundColor,
-        customBackgroundColor,
-        fontSize,
-        customFontSize,
-        lineHeight,
-        padding,
-        margin
+        style
     } = attributes;
 
     const [showBulkImportModal, setShowBulkImportModal] = useState(false);
@@ -114,25 +96,6 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
         setShowBulkImportModal(false);
     };
 
-    // Export to CSV
-    const exportToCsv = () => {
-        if (taglines.length === 0) return;
-        
-        const csvContent = taglines
-            .map(tagline => `"${tagline.replace(/"/g, '""')}"`)
-            .join('\n');
-            
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.setAttribute('href', url);
-        link.setAttribute('download', 'taglines.csv');
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
     // UseEffect to auto-import site tagline if no taglines exist
     useEffect(() => {
         if (taglines.length === 0 && siteDescription) {
@@ -142,16 +105,11 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
 
     // Block props with styles
     const blockProps = useBlockProps({
-        className: `has-text-align-${textAlign || 'center'}`,
-        style: {
-            color: textColor || customTextColor,
-            backgroundColor: backgroundColor || customBackgroundColor,
-            fontSize: fontSize || customFontSize,
-            lineHeight: lineHeight,
-            padding: `${padding?.top || '1em'} ${padding?.right || '1em'} ${padding?.bottom || '1em'} ${padding?.left || '1em'}`,
-            margin: `${margin?.top || '0'} ${margin?.right || '0'} ${margin?.bottom || '0'} ${margin?.left || '0'}`
-        }
+        className: `has-text-align-${textAlign || 'center'}`
     });
+
+    // Combine classes
+    blockProps.className = `${blockProps.className} ${attributes.className || ''}`;
 
     return (
         <>
@@ -192,68 +150,11 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             >
                                 {__('Bulk Import', 'super-swank-random-description-block')}
                             </Button>
-                            
-                            {taglines.length > 0 && (
-                                <Button
-                                    isSecondary
-                                    onClick={exportToCsv}
-                                    icon="download"
-                                >
-                                    {__('Export CSV', 'super-swank-random-description-block')}
-                                </Button>
-                            )}
                         </div>
                     </div>
                 </PanelBody>
                 
-                <PanelColorSettings
-                    title={__('Color Settings', 'super-swank-random-description-block')}
-                    initialOpen={false}
-                    colorSettings={[
-                        {
-                            value: textColor || customTextColor,
-                            onChange: (colorValue) => {
-                                setAttributes({
-                                    textColor: colorValue,
-                                    customTextColor: colorValue
-                                });
-                            },
-                            label: __('Text Color', 'super-swank-random-description-block'),
-                        },
-                        {
-                            value: backgroundColor || customBackgroundColor,
-                            onChange: (colorValue) => {
-                                setAttributes({
-                                    backgroundColor: colorValue,
-                                    customBackgroundColor: colorValue
-                                });
-                            },
-                            label: __('Background Color', 'super-swank-random-description-block'),
-                        },
-                    ]}
-                >
-                    <ContrastChecker
-                        textColor={textColor || customTextColor}
-                        backgroundColor={backgroundColor || customBackgroundColor}
-                    />
-                </PanelColorSettings>
-                
-                <PanelBody title={__('Typography', 'super-swank-random-description-block')} initialOpen={false}>
-                    <FontSizePicker
-                        value={fontSize || customFontSize}
-                        onChange={(size) => {
-                            setAttributes({
-                                fontSize: size,
-                                customFontSize: size
-                            });
-                        }}
-                    />
-                    
-                    <LineHeightControl
-                        value={lineHeight}
-                        onChange={(value) => setAttributes({ lineHeight: value })}
-                    />
-                    
+                <PanelBody title={__('Layout', 'super-swank-random-description-block')} initialOpen={false}>
                     <SelectControl
                         label={__('Text Alignment', 'super-swank-random-description-block')}
                         value={textAlign}
