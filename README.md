@@ -64,6 +64,13 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 
 == Changelog ==
 
+= 1.3.1 =
+* Fixed spacing styles to properly handle WordPress CSS variables
+* Added animation toggle for fade-in effect
+* Removed block styles panel for simpler interface
+* Improved animation performance with proper reflow handling
+* Updated license from GPL-2.0+ to GPL-3.0+
+
 = 1.3.0 =
 * Simplified CSS class structure for improved styling and compatibility
 * Updated main block CSS class from `.wp-block-random-description-block-random-description` to `.wp-block-random-description`
@@ -102,6 +109,9 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+This update fixes spacing styles to properly handle WordPress CSS variables and adds a toggle for animation effects. If you're using custom spacing settings, they should now work correctly. Also updates the plugin license to GPL-3.0+.
 
 = 1.3.0 =
 This update simplifies the CSS class structure, making it easier to style the block with custom CSS. If you have any custom styles targeting the old class name, please update them to use the new simplified class name.

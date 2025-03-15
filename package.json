@@ -1,9 +1,9 @@
 {
   "name": "super-swank-random-description-block",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "WordPress block plugin for displaying random site descriptions",
   "author": "eD! Thomas",
-  "license": "GPL-2.0-or-later",
+  "license": "GPL-3.0-or-later",
   "main": "build/index.js",
   "scripts": {
     "build": "wp-scripts build",

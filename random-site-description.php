@@ -15,11 +15,11 @@
  * Plugin Name:       Super-Swank Random Description Block
  * Plugin URI:        https://edequalsaweso.me/random-site-description
  * Description:       This will add a block that can cycle through a bunch of different site descriptions for you every time the page is reloaded
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            eD! Thomas
  * Author URI:        https://edequalsaweso.me/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:           GPL-3.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       super-swank-random-description-block
  * Domain Path:       /languages
  */
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_VERSION', '1.3.0' );
+define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_VERSION', '1.3.1' );
 define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_FILE', __FILE__ );

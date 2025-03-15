@@ -6,7 +6,7 @@
   "category": "widgets",
   "icon": "format-quote",
   "description": "Displays a random site description from a list of taglines each time the page is loaded.",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "textdomain": "super-swank-random-description-block",
   "supports": {
     "html": false,
@@ -17,7 +17,6 @@
       "blockGap": true
     },
     "className": true,
-    "styles": true,
     "typography": {
       "fontSize": true,
       "lineHeight": true,
@@ -43,6 +42,10 @@
     },
     "style": {
       "type": "object"
+    },
+    "animate": {
+      "type": "boolean",
+      "default": true
     }
   },
   "editorScript": "file:../../../build/index.js",

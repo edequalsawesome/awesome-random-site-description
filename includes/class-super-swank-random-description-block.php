@@ -195,9 +195,9 @@ class Super_Swank_Random_Description_Block {
 			$class_names[] = $attributes['className'];
 		}
 
-		// Add block style class if set
-		if ( isset( $attributes['style']['className'] ) ) {
-			$class_names[] = $attributes['style']['className'];
+		// Add animation class if enabled
+		if ( isset( $attributes['animate'] ) && $attributes['animate'] ) {
+			$class_names[] = 'has-animation';
 		}
 
 		// Encode taglines for front-end JavaScript.
