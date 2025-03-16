@@ -28,8 +28,7 @@
       "background": true,
       "gradients": true
     },
-    "align": true,
-    "alignText": true
+    "textAlign": true
   },
   "attributes": {
     "taglines": {
