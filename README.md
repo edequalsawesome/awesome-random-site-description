@@ -64,6 +64,12 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 
 == Changelog ==
 
+= 1.3.2 =
+* Improved button styling in Block Settings panel
+* Added upload icon to Bulk Import button
+* Increased spacing between action buttons for better visual hierarchy
+* Enhanced overall UI consistency in the editor interface
+
 = 1.3.1 =
 * Fixed spacing styles to properly handle WordPress CSS variables
 * Added animation toggle for fade-in effect

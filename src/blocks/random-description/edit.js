@@ -143,11 +143,13 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             <p>{__('No taglines added yet. Add some below!', 'super-swank-random-description-block')}</p>
                         ) : (
                             taglines.map((tagline, index) => (
-                                <div key={index} className="tagline-item">
-                                    <TextControl
-                                        value={tagline}
-                                        onChange={(value) => updateTagline(index, value)}
-                                    />
+                                <div key={index} className="tagline-item components-flex">
+                                    <div className="components-flex-item components-flex-block">
+                                        <TextControl
+                                            value={tagline}
+                                            onChange={(value) => updateTagline(index, value)}
+                                        />
+                                    </div>
                                     <Button
                                         isDestructive
                                         onClick={() => removeTagline(index)}
@@ -158,8 +160,9 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             ))
                         )}
                         
-                        <div className="tagline-actions">
+                        <div className="tagline-actions components-flex components-flex-block components-flex-direction-column">
                             <Button
+                                className="components-flex-item"
                                 isPrimary
                                 onClick={addTagline}
                                 icon="plus"
@@ -168,14 +171,17 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             </Button>
                             
                             <Button
+                                className="components-flex-item"
                                 isSecondary
                                 onClick={() => setShowBulkImportModal(true)}
+                                icon="upload"
                             >
                                 {__('Bulk Import', 'super-swank-random-description-block')}
                             </Button>
 
                             {taglines.length > 0 && (
                                 <Button
+                                    className="components-flex-item"
                                     isSecondary
                                     onClick={handleExport}
                                     icon="download"

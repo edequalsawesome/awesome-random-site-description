@@ -4,42 +4,61 @@
 
 .wp-block-random-description {
   .taglines-panel {
-    margin-bottom: 1em;
+    margin-bottom: 16px !important;
     
     .tagline-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5em;
-      
-      div {
-        flex-grow: 1;
-      }
+      margin-bottom: 8px !important;
+      display: flex !important;
+      align-items: center !important;
       
       .components-base-control {
-        flex: 1;
-        margin-bottom: 0;
+        margin: 0 !important;
+        width: 100% !important;
+        flex: 1 1 auto !important;
+        
+        .components-base-control__field {
+          margin: 0 !important;
+        }
+        
+        .components-text-control__input {
+          width: 100% !important;
+        }
       }
       
-      .components-button {
-        margin-left: 0.5em;
+      .components-button.is-destructive {
+        height: 30px !important;
+        min-width: 30px !important;
+        padding: 0 !important;
+        flex: 0 0 auto !important;
+        margin-left: 8px !important;
+        
+        svg {
+          margin: 0 !important;
+        }
       }
     }
     
     .tagline-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      margin-top: 1em;
+      margin-top: 16px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
       
       .components-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
+        display: flex !important;
+        width: 100% !important;
+        justify-content: center !important;
+        height: auto !important;
+        padding: 6px 12px !important;
+        margin: 0 !important;
+        
+        &.is-primary,
+        &.is-secondary {
+          margin: 0 !important;
+        }
         
         svg {
-          margin-right: 5px;
-          margin-top: 0;
+          margin-right: 8px !important;
         }
       }
     }
@@ -101,4 +120,18 @@
     justify-content: flex-end;
     margin-top: 1em;
   }
+}
+
+.taglines-panel .tagline-item {
+  display: flex;
+}
+
+.taglines-panel .tagline-item div {
+  flex-grow: 1;
+}
+
+.taglines-panel .tagline-actions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
 } 
