@@ -11,6 +11,10 @@
       align-items: center;
       margin-bottom: 0.5em;
       
+      div {
+        flex-grow: 1;
+      }
+      
       .components-base-control {
         flex: 1;
         margin-bottom: 0;
@@ -23,13 +27,15 @@
     
     .tagline-actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 0.5em;
       margin-top: 1em;
       
       .components-button {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 100%;
         
         svg {
           margin-right: 5px;
