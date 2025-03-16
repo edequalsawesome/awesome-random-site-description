@@ -96,6 +96,31 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
         setShowBulkImportModal(false);
     };
 
+    // Handle CSV export
+    const handleExport = () => {
+        // Create CSV content with proper escaping
+        const csvContent = taglines
+            .map(tagline => `"${tagline.replace(/"/g, '""')}"`)
+            .join('\n');
+        
+        // Create a blob and download link
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        
+        // Set up the download
+        link.href = URL.createObjectURL(blob);
+        link.download = 'taglines.csv';
+        link.style.display = 'none';
+        
+        // Trigger the download
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+    };
+
     // UseEffect to auto-import site tagline if no taglines exist
     useEffect(() => {
         if (taglines.length === 0 && siteDescription) {
@@ -148,6 +173,16 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             >
                                 {__('Bulk Import', 'super-swank-random-description-block')}
                             </Button>
+
+                            {taglines.length > 0 && (
+                                <Button
+                                    isSecondary
+                                    onClick={handleExport}
+                                    icon="download"
+                                >
+                                    {__('Export CSV', 'super-swank-random-description-block')}
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </PanelBody>
