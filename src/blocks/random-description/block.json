@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "super-swank-random-description/random-description",
   "title": "Random Description",
   "category": "widgets",
   "icon": "format-quote",
   "description": "Displays a random site description from a list of taglines each time the page is loaded.",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "textdomain": "super-swank-random-description-block",
   "supports": {
     "html": false,

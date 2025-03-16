@@ -64,6 +64,12 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 
 == Changelog ==
 
+= 1.4.0 =
+* Upgraded to Block API Version 3 for improved editor compatibility
+* Added support for iframed editor context in WordPress 6.3+
+* Enhanced style isolation and compatibility
+* Improved block rendering performance
+
 = 1.3.2 =
 * Improved button styling in Block Settings panel
 * Added upload icon to Bulk Import button
