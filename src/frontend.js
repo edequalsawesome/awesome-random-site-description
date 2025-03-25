@@ -51,6 +51,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Just update the content if no animation
                 textElement.textContent = randomTagline;
             }
+            
+            // Use this technique for smoother screen reader announcements
+            textElement.setAttribute('aria-hidden', 'true');
+            textElement.textContent = randomTagline;
+            setTimeout(() => {
+                textElement.removeAttribute('aria-hidden');
+            }, 50);
         }
     });
-}); 
+});

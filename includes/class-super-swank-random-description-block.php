@@ -133,87 +133,40 @@ class Super_Swank_Random_Description_Block {
 	 * Render the block on the server side.
 	 *
 	 * @param array $attributes Block attributes.
+	 * @param string $content Block content.
 	 * @return string Block content.
 	 */
-	public function render_block( $attributes ) {
-		// Enqueue the frontend script.
-		wp_enqueue_script( $this->slug . '-frontend' );
+	public function render_block( $attributes, $content ) {
+		// Extract the attributes
+		$class_name     = isset( $attributes['className'] ) ? $attributes['className'] : '';
+		$style          = isset( $attributes['style'] ) ? $this->get_styles( $attributes['style'] ) : '';
+		$align          = isset( $attributes['align'] ) ? 'align' . $attributes['align'] : '';
+		$descriptions   = isset( $attributes['descriptions'] ) ? $attributes['descriptions'] : array();
+		$interval       = isset( $attributes['interval'] ) ? intval( $attributes['interval'] ) : 5000;
+		$animation      = isset( $attributes['animation'] ) ? $attributes['animation'] : 'fade';
+		$current_description = isset( $descriptions[0] ) ? $descriptions[0] : '';
 
-		// Get taglines from attributes.
-		$taglines = isset( $attributes['taglines'] ) ? $attributes['taglines'] : array();
-
-		// If we have no taglines, try to use the site tagline.
-		if ( empty( $taglines ) ) {
-			$site_description = get_bloginfo( 'description' );
-			if ( ! empty( $site_description ) ) {
-				$taglines = array( $site_description );
-			}
+		// Add the align class if it exists
+		if ( ! empty( $align ) ) {
+			$class_name .= ' ' . $align;
 		}
 
-		// If still no taglines, return empty content.
-		if ( empty( $taglines ) ) {
-			return '';
-		}
+		// Encode the descriptions for use in data attribute
+		$descriptions_json = htmlspecialchars( wp_json_encode( $descriptions ), ENT_QUOTES, 'UTF-8' );
 
-		// Get first tagline as placeholder.
-		$first_tagline = $taglines[0];
-
-		// Build styles.
-		$styles = $this->build_styles( $attributes );
-
-		// Build class names.
-		$class_names = array('wp-block-random-description');
-		
-		// Add alignment class if set
-		if ( isset( $attributes['align'] ) ) {
-			$class_names[] = 'align' . $attributes['align'];
-		}
-		
-		// Add text alignment class if set
-		if ( isset( $attributes['textAlign'] ) ) {
-			$class_names[] = 'has-text-align-' . $attributes['textAlign'];
-		}
-
-		// Add color classes if set
-		if ( ! empty( $attributes['textColor'] ) ) {
-			$class_names[] = 'has-' . $attributes['textColor'] . '-color';
-		}
-		if ( ! empty( $attributes['backgroundColor'] ) ) {
-			$class_names[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
-		}
-		if ( ! empty( $attributes['gradient'] ) ) {
-			$class_names[] = 'has-' . $attributes['gradient'] . '-gradient-background';
-		}
-
-		// Add font size class if set
-		if ( ! empty( $attributes['fontSize'] ) ) {
-			$class_names[] = 'has-' . $attributes['fontSize'] . '-font-size';
-		}
-		
-		// Add custom className if set
-		if ( isset( $attributes['className'] ) ) {
-			$class_names[] = $attributes['className'];
-		}
-
-		// Add animation class if enabled
-		if ( isset( $attributes['animate'] ) && $attributes['animate'] ) {
-			$class_names[] = 'has-animation';
-		}
-
-		// Encode taglines for front-end JavaScript.
-		$taglines_json = htmlspecialchars( json_encode( $taglines ), ENT_QUOTES, 'UTF-8' );
-
-		// Build HTML.
+		// Build the block HTML with accessibility attributes
 		$html = sprintf(
-			'<div class="%1$s" style="%2$s" data-taglines="%3$s">
+			'<div class="wp-block-super-swank-random-description %1$s" style="%2$s" data-interval="%3$s" data-animation="%4$s" data-descriptions="%5$s" aria-live="polite" role="region" aria-label="Changing site description">
 				<div class="random-description-content">
-					<p>%4$s</p>
+					<p>%6$s</p>
 				</div>
 			</div>',
-			esc_attr( implode( ' ', $class_names ) ),
-			esc_attr( $styles ),
-			$taglines_json,
-			esc_html( $first_tagline )
+			esc_attr( $class_name ),
+			esc_attr( $style ),
+			esc_attr( $interval ),
+			esc_attr( $animation ),
+			$descriptions_json,
+			esc_html( $current_description )
 		);
 
 		return $html;
@@ -279,4 +232,4 @@ class Super_Swank_Random_Description_Block {
 }
 
 // Initialize the class.
-Super_Swank_Random_Description_Block::get_instance(); 
+Super_Swank_Random_Description_Block::get_instance();

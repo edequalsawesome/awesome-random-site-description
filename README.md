@@ -64,6 +64,12 @@ For security reasons, the plugin escapes HTML content. You can use the block's f
 
 == Changelog ==
 
+= 1.4.1 =
+* Added ARIA attributes to improve accessibility for screen readers
+* Added `aria-live="polite"` attribute to announce content changes
+* Added `role="region"` and descriptive `aria-label` to random description blocks
+* Enhanced user experience for visitors using assistive technologies
+
 = 1.4.0 =
 * Upgraded to Block API Version 3 for improved editor compatibility
 * Added support for iframed editor context in WordPress 6.3+
