@@ -28,7 +28,7 @@ class Awesome_Random_Description_Block {
 	 *
 	 * @var string
 	 */
-	private $version = '1.5.0';
+	private $version = '1.6.0';
 
 	/**
 	 * Plugin slug
@@ -48,7 +48,7 @@ class Awesome_Random_Description_Block {
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_assets' ) );
 
 		// Add settings link to plugins page.
-		add_filter( 'plugin_action_links_random-site-description/random-site-description.php', array( $this, 'add_plugin_links' ) );
+		add_filter( 'plugin_action_links_' . AWESOME_RANDOM_DESCRIPTION_PLUGIN_BASE, array( $this, 'add_plugin_links' ) );
 	}
 
 	/**
@@ -123,10 +123,7 @@ class Awesome_Random_Description_Block {
 			true
 		);
 		
-		// Automatically enqueue the script if we're not in the admin area
-		if ( ! is_admin() && has_blocks() ) {
-			wp_enqueue_script( $this->slug . '-frontend' );
-		}
+		// Only register, don't enqueue here - we'll enqueue in render_block when needed
 	}
 
 	/**
@@ -139,34 +136,32 @@ class Awesome_Random_Description_Block {
 	public function render_block( $attributes, $content ) {
 		// Extract the attributes
 		$class_name     = isset( $attributes['className'] ) ? $attributes['className'] : '';
-		$style          = isset( $attributes['style'] ) ? $this->get_styles( $attributes['style'] ) : '';
+		$style          = isset( $attributes['style'] ) ? $this->build_styles( $attributes ) : '';
 		$align          = isset( $attributes['align'] ) ? 'align' . $attributes['align'] : '';
-		$descriptions   = isset( $attributes['descriptions'] ) ? $attributes['descriptions'] : array();
-		$interval       = isset( $attributes['interval'] ) ? intval( $attributes['interval'] ) : 5000;
-		$animation      = isset( $attributes['animation'] ) ? $attributes['animation'] : 'fade';
-		$current_description = isset( $descriptions[0] ) ? $descriptions[0] : '';
+		$taglines       = isset( $attributes['taglines'] ) ? $attributes['taglines'] : array();
+		
+		// Select a random tagline on the server-side to prevent flash
+		$current_tagline = '';
+		if ( ! empty( $taglines ) ) {
+			$random_index = array_rand( $taglines );
+			$current_tagline = $taglines[ $random_index ];
+		}
 
 		// Add the align class if it exists
 		if ( ! empty( $align ) ) {
 			$class_name .= ' ' . $align;
 		}
 
-		// Encode the descriptions for use in data attribute
-		$descriptions_json = htmlspecialchars( wp_json_encode( $descriptions ), ENT_QUOTES, 'UTF-8' );
-
 		// Build the block HTML with accessibility attributes
 		$html = sprintf(
-			'<div class="wp-block-awesome-random-description %1$s" style="%2$s" data-interval="%3$s" data-animation="%4$s" data-descriptions="%5$s" aria-live="polite" role="region" aria-label="Changing site description">
+			'<div class="wp-block-awesome-random-description %1$s" style="%2$s" aria-live="polite" role="region" aria-label="Site description">
 				<div class="random-description-content">
-					<p>%6$s</p>
+					<p>%3$s</p>
 				</div>
 			</div>',
-			esc_attr( $class_name ),
+			esc_attr( trim( $class_name ) ),
 			esc_attr( $style ),
-			esc_attr( $interval ),
-			esc_attr( $animation ),
-			$descriptions_json,
-			esc_html( $current_description )
+			esc_html( $current_tagline )
 		);
 
 		return $html;

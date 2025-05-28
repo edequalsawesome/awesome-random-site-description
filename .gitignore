@@ -77,4 +77,5 @@ yarn-debug.log
 *.zip
 
 # Project development documentation
-PROJECT_SUMMARY.md 
+PROJECT_SUMMARY.md
+OPTIMIZATION_SUMMARY.md 

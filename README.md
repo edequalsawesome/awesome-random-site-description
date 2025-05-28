@@ -1,22 +1,22 @@
 # Awesome Random Description Block
 
-A WordPress Gutenberg block that displays random site descriptions/taglines.
+A lightweight, accessible WordPress Gutenberg block that displays random site descriptions/taglines with immediate loading and comprehensive customization options.
 
 ## Description
 
-The Awesome Random Description Block allows you to create a collection of taglines or descriptions that will randomly cycle each time a page is loaded or when visitors navigate between pages. It's perfect for adding dynamic, engaging content to your site header, footer, or any page where you want to showcase different aspects of your brand or message.
+The Awesome Random Description Block allows you to create a collection of taglines or descriptions that will randomly display each time a page is loaded. It's perfect for adding dynamic, engaging content to your site header, footer, or any page where you want to showcase different aspects of your brand or message. The block displays a random tagline immediately upon page load with no flash or delay.
 
 ## Features
 
 - **Easy Management**: Add, edit, and remove taglines directly from the Gutenberg editor
 - **Bulk Import**: Import multiple taglines at once via text input or CSV file upload
 - **Export Functionality**: Export your taglines to CSV for backup or sharing
-- **Smooth Animations**: Choose from fade, slide, or no animation effects
+- **Immediate Display**: Random taglines appear instantly with no flash or loading delay
 - **Responsive Design**: Works beautifully on all device sizes
 - **Accessibility**: Built with proper ARIA labels and semantic HTML
 - **Customizable Styling**: Full support for WordPress theme colors, typography, and spacing
-- **Block Transformations**: Convert between Awesome Random Description and Site Tagline blocks
-- **Performance Optimized**: Lightweight and fast-loading
+- **Performance Optimized**: Lightweight, efficient loading, and minimal resource usage
+- **Block API v3**: Built with the latest WordPress block standards
 
 ## Installation
 
@@ -28,9 +28,9 @@ The Awesome Random Description Block allows you to create a collection of taglin
 
 ### Manual Installation
 
-1. Upload the plugin files to the `/wp-content/plugins/awesome-random-description-block` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/awesome-random-description-block` directory
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Gutenberg editor to add the 'Awesome Random Description' block to your pages or templates
+3. Use the Gutenberg editor to add the 'Awesome Random Description' block to your pages
 
 ## Usage
 
@@ -39,15 +39,34 @@ The Awesome Random Description Block allows you to create a collection of taglin
 3. **Customize**: Adjust typography, colors, spacing, and animation settings to match your theme
 4. **Publish**: Save your page and watch your taglines rotate randomly on each page load
 
+## Performance & Accessibility
+
+### Performance Optimizations
+- **Server-Side Randomization**: Random taglines are selected server-side for immediate display
+- **No Flash Effect**: Taglines appear instantly without any visual delay or replacement
+- **Minimal Dependencies**: Streamlined codebase with only essential dependencies
+- **Optimized Build Process**: Minified and optimized assets
+- **Lightweight Frontend**: No JavaScript required for basic functionality
+
+### Accessibility Features
+- **ARIA Live Regions**: Screen readers are notified of content changes
+- **Semantic HTML**: Proper heading structure and meaningful markup
+- **Keyboard Navigation**: Full keyboard accessibility support
+- **High Contrast Support**: Works with high contrast themes and modes
+
 ## Frequently Asked Questions
 
 ### How often do the descriptions change?
 
-The descriptions change each time a page is loaded or refreshed. Each visitor will see a random tagline from your collection.
+The descriptions change each time a page is loaded or refreshed. Each visitor will see a random tagline from your collection, selected server-side for immediate display.
 
 ### Can I use this with any theme?
 
 Yes, the Awesome Random Description Block is designed to work with any WordPress theme that supports Gutenberg blocks.
+
+### Are there any animations?
+
+No, the block displays taglines immediately without any animations or transitions. This ensures fast loading and eliminates any flash effects.
 
 ### Can I style the block?
 
@@ -56,6 +75,7 @@ Absolutely! The block supports all WordPress block styling options including:
 - Colors (text and background)
 - Spacing (margin and padding)
 - Alignment options
+- Custom CSS classes
 
 ### Can I export my taglines?
 
@@ -67,18 +87,34 @@ Yes, you can import multiple taglines at once by:
 1. Typing or pasting them in the bulk import text area (one per line)
 2. Uploading a CSV file with your taglines
 
-## Block Transformations
+## Technical Details
 
-You can easily convert between block types:
-- **From Site Tagline to Awesome Random Description**: Converts the site tagline into the first tagline in your collection
-- **To Site Tagline from Awesome Random Description**: Converts your first tagline back to a standard Site Tagline block
+- **WordPress Version**: 5.0+
+- **PHP Version**: 7.4+
+- **Block API Version**: 3
+- **Dependencies**: WordPress core only
+- **File Size**: < 50KB total
 
 ## Changelog
 
-### 1.5.0
-* Renamed plugin to Awesome Random Description Block
-* Updated all branding and references
-* Maintained all existing functionality
+### 1.6.0 (Current - Streamlined)
+* **Major Streamlining Update**
+* Removed all animation functionality for immediate display
+* Implemented server-side random tagline selection
+* Eliminated flash effect on page load
+* Further optimized performance with minimal frontend JavaScript
+* Enhanced accessibility with simplified, immediate content display
+* Reduced bundle size and improved loading speed
+
+### 1.5.0 (Optimized)
+* Fixed all naming inconsistencies (removed legacy "super-swank" references)
+* Optimized frontend script loading (only loads when block is present)
+* Improved accessibility with motion preference support
+* Streamlined codebase and removed unnecessary files
+* Enhanced performance with efficient animations
+* Fixed data attribute mismatches between PHP and JavaScript
+* Updated to use consistent CSS class names throughout
+* Improved error handling and code quality
 
 ### 1.4.1
 * Improved animation performance and smoothness
@@ -91,7 +127,7 @@ You can easily convert between block types:
 * Enhanced block registration
 
 ### 1.3.0
-* Added smooth animations with fade and slide effects
+* Added smooth animations with fade effects
 * Improved accessibility with ARIA labels
 * Enhanced responsive design
 * Added animation control settings
@@ -102,48 +138,32 @@ You can easily convert between block types:
 * Improved user interface with better button spacing
 * Enhanced block settings panel organization
 
-### 1.2.4
-* Added block transformations: now you can transform between Awesome Random Description and Site Tagline blocks
-* Improved block compatibility and performance
-* Enhanced user experience with seamless block conversions
+## Development
 
-### 1.2.3
-* Fixed block registration issues
-* Improved compatibility with WordPress 6.4+
+### Building the Plugin
 
-### 1.2.2
-* Renamed to Awesome Random Description Block
-* Improved block icon and description
-* Enhanced user interface
+```bash
+npm install
+npm run build
+```
 
-### 1.2.1
-* Fixed CSS loading issues
-* Improved block styling consistency
+### Development Mode
 
-### 1.2.0
-* Complete rewrite as a Gutenberg block
-* Added full block editor support
-* Improved performance and user experience
-* Added comprehensive styling options
+```bash
+npm run start
+```
 
-## Block Transformations
+### Linting
 
-This update adds block transformation capabilities, allowing you to convert between Awesome Random Description blocks and WordPress Site Tagline blocks.
+```bash
+npm run lint:js
+npm run lint:css
+```
 
-### How to Transform Blocks
+## Support
 
-1. **Select the block** you want to transform
-2. **Click the block options** (three dots) in the toolbar
-3. **Choose "Transform to"** and select your desired block type
-4. **The content will be automatically converted** while preserving your taglines
+For support, feature requests, or bug reports, please visit [our website](https://edequalsaweso.me/random-site-description) or contact the plugin author.
 
-### Transformation Details
+## License
 
-- **Site Tagline → Awesome Random Description**: The site tagline becomes your first random tagline
-- **Awesome Random Description → Site Tagline**: Your first tagline becomes the site tagline
-
-## Getting Started
-
-1. **Add the Block**: Insert the "Awesome Random Description" block from the Gutenberg block inserter
-
-For more detailed instructions and examples, visit [our website](https://edequalsaweso.me/random-site-description).
+This plugin is licensed under the GPL-3.0+ license.

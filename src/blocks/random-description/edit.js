@@ -8,8 +8,7 @@ import {
     Button,
     TextareaControl,
     Placeholder,
-    Modal,
-    ToggleControl
+    Modal
 } from '@wordpress/components';
 import {
     useBlockProps,
@@ -29,8 +28,7 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes, clientId, isSelected }) {
     const {
         taglines = [],
-        style,
-        animate
+        style
     } = attributes;
 
     const [showBulkImportModal, setShowBulkImportModal] = useState(false);
@@ -132,7 +130,7 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
     const blockProps = useBlockProps();
 
     // Combine classes
-    blockProps.className = `${blockProps.className} ${attributes.className || ''} ${animate ? 'has-animation' : ''}`;
+    blockProps.className = `${blockProps.className} ${attributes.className || ''}`;
 
     return (
         <>
@@ -191,14 +189,6 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
                             )}
                         </div>
                     </div>
-                </PanelBody>
-                <PanelBody title={__('Animation Settings', 'awesome-random-description-block')} initialOpen={true}>
-                    <ToggleControl
-                        label={__('Enable Animation', 'awesome-random-description-block')}
-                        help={__('Animate the tagline when it changes', 'awesome-random-description-block')}
-                        checked={animate}
-                        onChange={(value) => setAttributes({ animate: value })}
-                    />
                 </PanelBody>
             </InspectorControls>
             

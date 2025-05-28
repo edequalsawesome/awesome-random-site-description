@@ -1,6 +1,6 @@
 {
   "name": "awesome-random-description-block",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "WordPress block plugin for displaying random site descriptions",
   "author": "eD! Thomas",
   "license": "GPL-3.0-or-later",
@@ -18,7 +18,6 @@
     "build",
     "includes",
     "src",
-    "assets",
     "languages",
     "LICENSE.txt",
     "README.md",
@@ -27,8 +26,7 @@
     "index.php"
   ],
   "devDependencies": {
-    "@wordpress/scripts": "^30.7.0",
-    "clean-webpack-plugin": "^4.0.0"
+    "@wordpress/scripts": "^30.7.0"
   },
   "dependencies": {
     "@wordpress/block-editor": "^12.3.0",

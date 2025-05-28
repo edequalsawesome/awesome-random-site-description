@@ -9,13 +9,13 @@
  *
  * @link              https://edequalsaweso.me
  * @since             1.2
- * @package           Random_Site_Description
+ * @package           Awesome_Random_Description
  *
  * @wordpress-plugin
  * Plugin Name:       Awesome Random Description Block
  * Plugin URI:        https://edequalsaweso.me/random-site-description
  * Description:       This will add a block that can cycle through a bunch of different site descriptions for you every time the page is reloaded
- * Version:           1.5.0
+ * Version:           1.6.0
  * Author:            eD! Thomas
  * Author URI:        https://edequalsaweso.me/
  * License:           GPL-3.0+
@@ -30,39 +30,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'SUPER_SWANK_RANDOM_SITE_DESCRIPTION_VERSION', '1.5.0' );
-define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_FILE', __FILE__ );
-define( 'SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_BASE', plugin_basename( __FILE__ ) );
+define( 'AWESOME_RANDOM_DESCRIPTION_VERSION', '1.6.0' );
+define( 'AWESOME_RANDOM_DESCRIPTION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'AWESOME_RANDOM_DESCRIPTION_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'AWESOME_RANDOM_DESCRIPTION_PLUGIN_FILE', __FILE__ );
+define( 'AWESOME_RANDOM_DESCRIPTION_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
  */
-function activate_super_swank_random_description_block() {
+function activate_awesome_random_description_block() {
 	// Add any activation functionality here if needed
 }
 
 /**
  * The code that runs during plugin deactivation.
  */
-function deactivate_super_swank_random_description_block() {
+function deactivate_awesome_random_description_block() {
 	// Add any deactivation functionality here if needed
 }
 
-register_activation_hook( __FILE__, 'activate_super_swank_random_description_block' );
-register_deactivation_hook( __FILE__, 'deactivate_super_swank_random_description_block' );
+register_activation_hook( __FILE__, 'activate_awesome_random_description_block' );
+register_deactivation_hook( __FILE__, 'deactivate_awesome_random_description_block' );
 
 /**
  * Load plugin text domain for translations.
  */
-function super_swank_random_description_block_load_textdomain() {
+function awesome_random_description_block_load_textdomain() {
 	load_plugin_textdomain( 'awesome-random-description-block', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-add_action( 'plugins_loaded', 'super_swank_random_description_block_load_textdomain' );
+add_action( 'plugins_loaded', 'awesome_random_description_block_load_textdomain' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require_once SUPER_SWANK_RANDOM_DESCRIPTION_BLOCK_PLUGIN_DIR . 'includes/class-awesome-random-description-block.php';
+require_once AWESOME_RANDOM_DESCRIPTION_PLUGIN_DIR . 'includes/class-awesome-random-description-block.php';
