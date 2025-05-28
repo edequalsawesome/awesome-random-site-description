@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Super_Swank_Random_Description_Block class
+ * Awesome_Random_Description_Block class
  */
-class Super_Swank_Random_Description_Block {
+class Awesome_Random_Description_Block {
 
 	/**
 	 * Instance of this class
@@ -28,14 +28,14 @@ class Super_Swank_Random_Description_Block {
 	 *
 	 * @var string
 	 */
-	private $version = '1.2.5';
+	private $version = '1.5.0';
 
 	/**
 	 * Plugin slug
 	 *
 	 * @var string
 	 */
-	private $slug = 'super-swank-random-description-block';
+	private $slug = 'awesome-random-description-block';
 
 	/**
 	 * Constructor
@@ -105,7 +105,7 @@ class Super_Swank_Random_Description_Block {
 
 		// Set translations.
 		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( $this->slug . '-editor', 'super-swank-random-description-block', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
+			wp_set_script_translations( $this->slug . '-editor', 'awesome-random-description-block', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 		}
 	}
 
@@ -156,7 +156,7 @@ class Super_Swank_Random_Description_Block {
 
 		// Build the block HTML with accessibility attributes
 		$html = sprintf(
-			'<div class="wp-block-super-swank-random-description %1$s" style="%2$s" data-interval="%3$s" data-animation="%4$s" data-descriptions="%5$s" aria-live="polite" role="region" aria-label="Changing site description">
+			'<div class="wp-block-awesome-random-description %1$s" style="%2$s" data-interval="%3$s" data-animation="%4$s" data-descriptions="%5$s" aria-live="polite" role="region" aria-label="Changing site description">
 				<div class="random-description-content">
 					<p>%6$s</p>
 				</div>
@@ -224,7 +224,7 @@ class Super_Swank_Random_Description_Block {
 	 */
 	public function add_plugin_links( $links ) {
 		$plugin_links = array(
-			'<a href="https://wordpress.org/support/plugin/random-site-description/" target="_blank">' . __( 'Support', 'super-swank-random-description-block' ) . '</a>',
+			'<a href="https://wordpress.org/support/plugin/random-site-description/" target="_blank">' . __( 'Support', 'awesome-random-description-block' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -232,4 +232,4 @@ class Super_Swank_Random_Description_Block {
 }
 
 // Initialize the class.
-Super_Swank_Random_Description_Block::get_instance();
+Awesome_Random_Description_Block::get_instance();

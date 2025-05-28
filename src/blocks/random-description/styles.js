@@ -6,7 +6,7 @@ import { registerBlockStyle } from '@wordpress/blocks';
 /**
  * Register block styles.
  */
-registerBlockStyle('super-swank-random-description/random-description', [
+registerBlockStyle('awesome-random-description/random-description', [
     {
         name: 'default',
         label: 'Default',

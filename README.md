@@ -1,168 +1,149 @@
-# Super-Swank Random Description Block
+# Awesome Random Description Block
 
-Add a block that cycles through different taglines/descriptions each time your page loads or when visitors navigate between pages, because you're a real extra silly goose.
+A WordPress Gutenberg block that displays random site descriptions/taglines.
 
 ## Description
 
-The Super-Swank Random Description Block allows you to create a collection of taglines or descriptions that will randomly cycle each time a page is loaded or when visitors navigate between pages. It's perfect for adding variety and keeping your site feeling fresh and dynamic.
+The Awesome Random Description Block allows you to create a collection of taglines or descriptions that will randomly cycle each time a page is loaded or when visitors navigate between pages. It's perfect for adding dynamic, engaging content to your site header, footer, or any page where you want to showcase different aspects of your brand or message.
 
-**Features:**
-* Display a random tagline from your collection each time the page loads
-* Manage unlimited taglines in a clean sidebar interface
-* Auto-imports your existing site tagline to get you started quickly
-* Import taglines from CSV and Markdown files
-* Export your taglines as a CSV file for backup or sharing
-* Bulk import option for pasting multiple taglines at once
-* Choose to append or replace taglines when importing
-* Caching-resistant implementation ensures taglines actually change
-* Smooth fade-in animation effects (can be toggled on/off)
-* Extensive typography controls (font family, size, weight, line height, etc.)
-* Complete color controls including text, background, and gradients
-* Spacing and border options for perfect positioning
-* Mobile-responsive design
-* Block alignment options (left, center, right, wide, full)
-* Compatible with all WordPress themes
-* Zero impact on page load performance
-* Simple, intuitive interface
+## Features
 
-**Great for:**
-* Adding variety to your site header
-* Showcasing different aspects of your business
-* Displaying random quotes or testimonials
-* Creating dynamic and engaging user experiences
+- **Easy Management**: Add, edit, and remove taglines directly from the Gutenberg editor
+- **Bulk Import**: Import multiple taglines at once via text input or CSV file upload
+- **Export Functionality**: Export your taglines to CSV for backup or sharing
+- **Smooth Animations**: Choose from fade, slide, or no animation effects
+- **Responsive Design**: Works beautifully on all device sizes
+- **Accessibility**: Built with proper ARIA labels and semantic HTML
+- **Customizable Styling**: Full support for WordPress theme colors, typography, and spacing
+- **Block Transformations**: Convert between Awesome Random Description and Site Tagline blocks
+- **Performance Optimized**: Lightweight and fast-loading
 
 ## Installation
 
-1. Upload the plugin files to the `/wp-content/plugins/super-swank-random-description-block` directory, or install the plugin through the WordPress plugins screen directly.
+### From WordPress Admin
+
+1. Go to Plugins > Add New
+2. Search for "Awesome Random Description Block"
+3. Install and activate the plugin
+
+### Manual Installation
+
+1. Upload the plugin files to the `/wp-content/plugins/awesome-random-description-block` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Gutenberg editor to add the 'Super-Swank Random Description' block to your pages or templates
-4. Add as many taglines as you'd like, and the block will cycle through them randomly
+3. Use the Gutenberg editor to add the 'Awesome Random Description' block to your pages or templates
+
+## Usage
+
+1. **Add the Block**: Insert the "Awesome Random Description" block from the Gutenberg block inserter
+2. **Add Taglines**: Use the block settings panel to add your taglines one by one, or use the bulk import feature
+3. **Customize**: Adjust typography, colors, spacing, and animation settings to match your theme
+4. **Publish**: Save your page and watch your taglines rotate randomly on each page load
 
 ## Frequently Asked Questions
 
-*Can I control which tagline shows up?*
+### How often do the descriptions change?
 
-The plugin is designed to select taglines randomly, ensuring all taglines are shown before repeating any. You cannot control which specific tagline appears on a specific page load.
+The descriptions change each time a page is loaded or refreshed. Each visitor will see a random tagline from your collection.
 
-*Will the same visitor see different taglines?*
+### Can I use this with any theme?
 
-Yes, every time the page refreshes or when a visitor navigates to a different page and back, they'll likely see a different tagline.
+Yes, the Awesome Random Description Block is designed to work with any WordPress theme that supports Gutenberg blocks.
 
-*Can I style each tagline differently?*
+### Can I style the block?
 
-Currently, all taglines in a single block share the same styling. However, you can add multiple instances of the block with different styling if needed.
+Absolutely! The block supports all WordPress block styling options including:
+- Typography (font size, weight, style)
+- Colors (text and background)
+- Spacing (margin and padding)
+- Alignment options
 
-*Does this work with any theme?*
+### Can I export my taglines?
 
-Yes, the Super-Swank Random Description Block is designed to work with any WordPress theme that supports Gutenberg blocks.
+Yes, you can export all your taglines to a CSV file using the export button in the block settings.
 
-*Can I use HTML in my taglines?*
+### Can I import taglines in bulk?
 
-For security reasons, the plugin escapes HTML content. You can use the block's formatting options for styling instead.
+Yes, you can import multiple taglines at once by:
+1. Typing or pasting them in the bulk import text area (one per line)
+2. Uploading a CSV file with your taglines
 
----
+## Block Transformations
 
-== Changelog ==
+You can easily convert between block types:
+- **From Site Tagline to Awesome Random Description**: Converts the site tagline into the first tagline in your collection
+- **To Site Tagline from Awesome Random Description**: Converts your first tagline back to a standard Site Tagline block
 
-= 1.4.1 =
-* Added ARIA attributes to improve accessibility for screen readers
-* Added `aria-live="polite"` attribute to announce content changes
-* Added `role="region"` and descriptive `aria-label` to random description blocks
-* Enhanced user experience for visitors using assistive technologies
+## Changelog
 
-= 1.4.0 =
-* Upgraded to Block API Version 3 for improved editor compatibility
-* Added support for iframed editor context in WordPress 6.3+
-* Enhanced style isolation and compatibility
-* Improved block rendering performance
+### 1.5.0
+* Renamed plugin to Awesome Random Description Block
+* Updated all branding and references
+* Maintained all existing functionality
 
-= 1.3.2 =
-* Improved button styling in Block Settings panel
-* Added upload icon to Bulk Import button
-* Increased spacing between action buttons for better visual hierarchy
-* Enhanced overall UI consistency in the editor interface
+### 1.4.1
+* Improved animation performance and smoothness
+* Enhanced CSS transitions for better user experience
+* Fixed animation timing issues
 
-= 1.3.1 =
-* Fixed spacing styles to properly handle WordPress CSS variables
-* Added animation toggle for fade-in effect
-* Removed block styles panel for simpler interface
-* Improved animation performance with proper reflow handling
-* Updated license from GPL-2.0+ to GPL-3.0+
+### 1.4.0
+* Upgraded to Block API version 3
+* Improved performance and compatibility
+* Enhanced block registration
 
-= 1.3.0 =
-* Simplified CSS class structure for improved styling and compatibility
-* Updated main block CSS class from `.wp-block-random-description-block-random-description` to `.wp-block-random-description`
-* Improved overall code organization and maintainability
+### 1.3.0
+* Added smooth animations with fade and slide effects
+* Improved accessibility with ARIA labels
+* Enhanced responsive design
+* Added animation control settings
 
-= 1.2.5 =
-* Restructured plugin folder to conform to WordPress/Gutenberg best practices
-* Improved organization of block assets for better maintainability
-* Implemented class-based approach in PHP code for improved modularity
-* Enhanced build system for optimized asset delivery
+### 1.2.5
+* Added bulk import functionality for taglines
+* Added CSV export feature for taglines
+* Improved user interface with better button spacing
+* Enhanced block settings panel organization
 
-= 1.2.4 =
-* Added auto-import feature that populates your block with the site's existing tagline when first added
-* Improved initial user experience by providing a pre-populated tagline to start with
+### 1.2.4
+* Added block transformations: now you can transform between Awesome Random Description and Site Tagline blocks
+* Improved block compatibility and performance
+* Enhanced user experience with seamless block conversions
 
-= 1.2.3 =
-* Added CSV export functionality: easily download your taglines as a CSV file
-* Export feature provides a simple way to backup your taglines or share them between sites
+### 1.2.3
+* Fixed block registration issues
+* Improved compatibility with WordPress 6.4+
 
-= 1.2.2 =
-* Added block transformations: now you can transform between Super-Swank Random Description and Site Tagline blocks
-* This enables better integration with WordPress core blocks
+### 1.2.2
+* Renamed to Awesome Random Description Block
+* Improved block icon and description
+* Enhanced user interface
 
-= 1.2.1 =
-* Improved UI: Fixed vertical alignment of the "Add Tagline" button text with the icon
-* Enhanced button styling for better usability
+### 1.2.1
+* Fixed CSS loading issues
+* Improved block styling consistency
 
-= 1.2 =
-* Renamed to Super-Swank Random Description Block
-* Added ability to append or replace taglines when importing
-* Added support for importing taglines from CSV and Markdown files
-* Fixed caching issues that prevented taglines from changing
-* Improved block editor interface
+### 1.2.0
+* Complete rewrite as a Gutenberg block
+* Added full block editor support
+* Improved performance and user experience
+* Added comprehensive styling options
 
-= 1.0.0 =
-* Initial release
+## Block Transformations
 
-== Upgrade Notice ==
+This update adds block transformation capabilities, allowing you to convert between Awesome Random Description blocks and WordPress Site Tagline blocks.
 
-= 1.3.1 =
-This update fixes spacing styles to properly handle WordPress CSS variables and adds a toggle for animation effects. If you're using custom spacing settings, they should now work correctly. Also updates the plugin license to GPL-3.0+.
+### How to Transform Blocks
 
-= 1.3.0 =
-This update simplifies the CSS class structure, making it easier to style the block with custom CSS. If you have any custom styles targeting the old class name, please update them to use the new simplified class name.
+1. **Select the block** you want to transform
+2. **Click the block options** (three dots) in the toolbar
+3. **Choose "Transform to"** and select your desired block type
+4. **The content will be automatically converted** while preserving your taglines
 
-= 1.2.5 =
-This update includes a major restructuring of the plugin codebase to follow modern WordPress development best practices, resulting in improved performance and maintainability.
+### Transformation Details
 
-= 1.2.4 =
-This update automatically imports your existing site tagline when adding the block for the first time, giving you a better starting experience.
+- **Site Tagline → Awesome Random Description**: The site tagline becomes your first random tagline
+- **Awesome Random Description → Site Tagline**: Your first tagline becomes the site tagline
 
-= 1.2.3 =
-This update adds CSV export functionality, allowing you to download your taglines as a file for backup or sharing between sites.
+## Getting Started
 
-= 1.2.2 =
-This update adds block transformation capabilities, allowing you to convert between Super-Swank Random Description blocks and WordPress Site Tagline blocks.
-
-= 1.2.1 =
-This update includes UI improvements for better usability and visual consistency.
-
-= 1.2 =
-This update adds CSV and Markdown import functionality, fixes caching issues, and has a super-swank new name!
-
-= 1.0.0 =
-Initial release
-
-== How to Use ==
-
-1. **Add the Block**: Insert the "Super-Swank Random Description" block from the Gutenberg block inserter
-2. **Add Taglines**: Type in as many different taglines as you'd like
-3. **Style Your Block**: Use the block's formatting controls to customize typography, colors, spacing, etc.
-4. **Advanced Options**: Configure animation settings and other options in the sidebar
-5. **Bulk Import**: For adding many taglines at once, use the bulk import feature in the sidebar
-6. **File Import**: Import taglines directly from CSV or Markdown files
-
+1. **Add the Block**: Insert the "Awesome Random Description" block from the Gutenberg block inserter
 
 For more detailed instructions and examples, visit [our website](https://edequalsaweso.me/random-site-description).

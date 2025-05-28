@@ -74,4 +74,7 @@ yarn-error.log
 yarn-debug.log
 
 # Ignore zip files
-*.zip 
+*.zip
+
+# Project development documentation
+PROJECT_SUMMARY.md 
