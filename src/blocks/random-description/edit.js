@@ -55,8 +55,14 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
 
     // Update a tagline by index
     const updateTagline = (index, value) => {
+        // Validate input
+        if (typeof value !== 'string') return;
+        
+        // Limit tagline length to 500 characters
+        const sanitizedValue = value.substring(0, 500);
+        
         const newTaglines = [...taglines];
-        newTaglines[index] = value;
+        newTaglines[index] = sanitizedValue;
         setAttributes({ taglines: newTaglines });
     };
 
@@ -64,10 +70,28 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
     const handleBulkImport = () => {
         if (!bulkImportText.trim()) return;
         
+        // Validate bulk import text size
+        if (bulkImportText.length > 50000) { // 50KB limit
+            alert(__('Text content too large. Please limit to 50KB.', 'awesome-random-description-block'));
+            return;
+        }
+        
         const newTaglines = bulkImportText
             .split('\n')
-            .map(line => line.trim())
+            .slice(0, 100) // Limit to 100 lines
+            .map(line => {
+                // Sanitize each line
+                let cleaned = line.trim();
+                // Prevent injection by removing dangerous characters at the start
+                cleaned = cleaned.replace(/^[=+\-@]/, '');
+                return cleaned.substring(0, 500); // Limit line length
+            })
             .filter(line => line.length > 0);
+        
+        if (newTaglines.length === 0) {
+            alert(__('No valid taglines found in the text.', 'awesome-random-description-block'));
+            return;
+        }
         
         setAttributes({ taglines: [...taglines, ...newTaglines] });
         setBulkImportText('');
@@ -79,18 +103,57 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
         const file = event.target.files[0];
         if (!file) return;
         
+        // Validate file type
+        if (file.type !== 'text/csv' && !file.name.toLowerCase().endsWith('.csv')) {
+            alert(__('Please select a valid CSV file.', 'awesome-random-description-block'));
+            event.target.value = ''; // Clear the input
+            return;
+        }
+        
+        // Validate file size (limit to 1MB)
+        if (file.size > 1024 * 1024) {
+            alert(__('File size must be less than 1MB.', 'awesome-random-description-block'));
+            event.target.value = ''; // Clear the input
+            return;
+        }
+        
         const reader = new FileReader();
         reader.onload = (e) => {
             const content = e.target.result;
+            
+            // Validate content length
+            if (content.length > 100000) { // 100KB limit
+                alert(__('File content too large.', 'awesome-random-description-block'));
+                return;
+            }
+            
             const lines = content.split('\n');
             const newTaglines = lines
-                .map(line => line.trim().replace(/^"(.*)"$/, '$1').replace(/""/g, '"'))
-                .filter(line => line.length > 0);
+                .slice(0, 100) // Limit to 100 lines
+                .map(line => {
+                    // Prevent CSV injection by removing dangerous characters at the start
+                    let cleaned = line.trim().replace(/^[=+\-@]/, '');
+                    // Remove quotes and unescape doubled quotes
+                    cleaned = cleaned.replace(/^"(.*)"$/, '$1').replace(/""/g, '"');
+                    return cleaned;
+                })
+                .filter(line => line.length > 0 && line.length <= 500) // Reasonable length limits
+                .map(line => line.substring(0, 500)); // Ensure we don't exceed 500 chars
+                
+            if (newTaglines.length === 0) {
+                alert(__('No valid taglines found in the CSV file.', 'awesome-random-description-block'));
+                return;
+            }
                 
             setAttributes({ taglines: [...taglines, ...newTaglines] });
         };
+        
+        reader.onerror = () => {
+            alert(__('Error reading file. Please try again.', 'awesome-random-description-block'));
+        };
+        
         reader.readAsText(file);
-        setCsvFile(null);
+        event.target.value = ''; // Clear the input
         setShowBulkImportModal(false);
     };
 

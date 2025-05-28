@@ -78,4 +78,5 @@ yarn-debug.log
 
 # Project development documentation
 PROJECT_SUMMARY.md
-OPTIMIZATION_SUMMARY.md 
+OPTIMIZATION_SUMMARY.md
+SECURITY_FIXES.md 

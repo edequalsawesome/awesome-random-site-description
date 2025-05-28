@@ -134,17 +134,26 @@ class Awesome_Random_Description_Block {
 	 * @return string Block content.
 	 */
 	public function render_block( $attributes, $content ) {
-		// Extract the attributes
-		$class_name     = isset( $attributes['className'] ) ? $attributes['className'] : '';
-		$style          = isset( $attributes['style'] ) ? $this->build_styles( $attributes ) : '';
-		$align          = isset( $attributes['align'] ) ? 'align' . $attributes['align'] : '';
-		$taglines       = isset( $attributes['taglines'] ) ? $attributes['taglines'] : array();
+		// Security check: Validate user permissions
+		if ( ! $this->validate_user_permissions() ) {
+			return '';
+		}
+		
+		// Validate and sanitize all attributes
+		$attributes = is_array( $attributes ) ? $attributes : array();
+		$safe_attributes = $this->validate_block_attributes( $attributes );
+		
+		// Extract the safe attributes
+		$class_name = isset( $safe_attributes['className'] ) ? $safe_attributes['className'] : '';
+		$style = isset( $safe_attributes['style'] ) ? $this->build_styles( $safe_attributes ) : '';
+		$align = isset( $safe_attributes['align'] ) ? 'align' . $safe_attributes['align'] : '';
+		$taglines = isset( $safe_attributes['taglines'] ) ? $safe_attributes['taglines'] : array();
 		
 		// Select a random tagline on the server-side to prevent flash
 		$current_tagline = '';
 		if ( ! empty( $taglines ) ) {
 			$random_index = array_rand( $taglines );
-			$current_tagline = $taglines[ $random_index ];
+			$current_tagline = wp_kses_post( $taglines[ $random_index ] );
 		}
 
 		// Add the align class if it exists
@@ -179,36 +188,81 @@ class Awesome_Random_Description_Block {
 		// Get style attribute
 		$style = isset( $attributes['style'] ) ? $attributes['style'] : array();
 		
+		// Allowed CSS properties and sides for security
+		$allowed_css_properties = array( 'padding', 'margin' );
+		$allowed_css_sides = array( 'top', 'right', 'bottom', 'left' );
+		
 		// Handle spacing styles
 		if ( isset( $style['spacing'] ) ) {
 			$spacing = $style['spacing'];
 			
 			// Handle padding
-			if ( isset( $spacing['padding'] ) ) {
+			if ( isset( $spacing['padding'] ) && is_array( $spacing['padding'] ) ) {
 				foreach ( $spacing['padding'] as $side => $value ) {
-					// Convert var:preset|spacing|60 to var(--wp--preset--spacing--60)
-					if ( strpos( $value, 'var:preset|spacing|' ) === 0 ) {
-						$spacing_value = str_replace( 'var:preset|spacing|', '', $value );
-						$value = sprintf( 'var(--wp--preset--spacing--%s)', $spacing_value );
+					// Validate side parameter
+					if ( ! in_array( $side, $allowed_css_sides, true ) ) {
+						continue;
 					}
-					$styles[] = sprintf( 'padding-%s: %s', $side, $value );
+					
+					// Sanitize CSS value
+					$sanitized_value = $this->sanitize_css_value( $value );
+					if ( $sanitized_value ) {
+						$styles[] = sprintf( 'padding-%s: %s', sanitize_key( $side ), $sanitized_value );
+					}
 				}
 			}
 			
 			// Handle margin
-			if ( isset( $spacing['margin'] ) ) {
+			if ( isset( $spacing['margin'] ) && is_array( $spacing['margin'] ) ) {
 				foreach ( $spacing['margin'] as $side => $value ) {
-					// Convert var:preset|spacing|60 to var(--wp--preset--spacing--60)
-					if ( strpos( $value, 'var:preset|spacing|' ) === 0 ) {
-						$spacing_value = str_replace( 'var:preset|spacing|', '', $value );
-						$value = sprintf( 'var(--wp--preset--spacing--%s)', $spacing_value );
+					// Validate side parameter
+					if ( ! in_array( $side, $allowed_css_sides, true ) ) {
+						continue;
 					}
-					$styles[] = sprintf( 'margin-%s: %s', $side, $value );
+					
+					// Sanitize CSS value
+					$sanitized_value = $this->sanitize_css_value( $value );
+					if ( $sanitized_value ) {
+						$styles[] = sprintf( 'margin-%s: %s', sanitize_key( $side ), $sanitized_value );
+					}
 				}
 			}
 		}
 
 		return ! empty( $styles ) ? implode( '; ', $styles ) : '';
+	}
+
+	/**
+	 * Sanitize CSS values to prevent injection attacks.
+	 *
+	 * @param string $value CSS value to sanitize.
+	 * @return string|false Sanitized CSS value or false if invalid.
+	 */
+	private function sanitize_css_value( $value ) {
+		// Ensure we have a string
+		if ( ! is_string( $value ) ) {
+			return false;
+		}
+		
+		// Allow WordPress preset values
+		if ( preg_match( '/^var:preset\|spacing\|[a-z0-9\-_]+$/i', $value ) ) {
+			$spacing_value = str_replace( 'var:preset|spacing|', '', $value );
+			// Sanitize the spacing value to ensure it's safe
+			$spacing_value = preg_replace( '/[^a-z0-9\-_]/i', '', $spacing_value );
+			return sprintf( 'var(--wp--preset--spacing--%s)', sanitize_key( $spacing_value ) );
+		}
+		
+		// Allow safe CSS units (px, em, rem, %, vh, vw) with numeric values
+		if ( preg_match( '/^(\d+(?:\.\d+)?)(px|em|rem|%|vh|vw)$/i', $value ) ) {
+			return sanitize_text_field( $value );
+		}
+		
+		// Allow zero value
+		if ( $value === '0' ) {
+			return '0';
+		}
+		
+		return false; // Reject all other values
 	}
 
 	/**
@@ -222,6 +276,62 @@ class Awesome_Random_Description_Block {
 			'<a href="https://wordpress.org/support/plugin/random-site-description/" target="_blank">' . __( 'Support', 'awesome-random-description-block' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
+	}
+
+	/**
+	 * Validate user permissions for block operations.
+	 *
+	 * @return bool True if user has permission, false otherwise.
+	 */
+	private function validate_user_permissions() {
+		// Allow frontend rendering for all users
+		if ( ! is_admin() ) {
+			return true;
+		}
+		
+		// In admin, check if user can edit posts (minimum capability for blocks)
+		return current_user_can( 'edit_posts' );
+	}
+
+	/**
+	 * Validate and sanitize block attributes.
+	 *
+	 * @param array $attributes Raw block attributes.
+	 * @return array Sanitized attributes.
+	 */
+	private function validate_block_attributes( $attributes ) {
+		$safe_attributes = array();
+		
+		// Validate className
+		if ( isset( $attributes['className'] ) && is_string( $attributes['className'] ) ) {
+			$safe_attributes['className'] = sanitize_html_class( $attributes['className'] );
+		}
+		
+		// Validate align
+		if ( isset( $attributes['align'] ) && is_string( $attributes['align'] ) ) {
+			$allowed_alignments = array( 'left', 'center', 'right', 'wide', 'full' );
+			if ( in_array( $attributes['align'], $allowed_alignments, true ) ) {
+				$safe_attributes['align'] = sanitize_key( $attributes['align'] );
+			}
+		}
+		
+		// Validate taglines
+		if ( isset( $attributes['taglines'] ) && is_array( $attributes['taglines'] ) ) {
+			$safe_taglines = array();
+			foreach ( $attributes['taglines'] as $tagline ) {
+				if ( is_string( $tagline ) && strlen( trim( $tagline ) ) > 0 && strlen( $tagline ) <= 500 ) {
+					$safe_taglines[] = sanitize_text_field( $tagline );
+				}
+			}
+			$safe_attributes['taglines'] = array_slice( $safe_taglines, 0, 100 ); // Limit to 100 taglines
+		}
+		
+		// Validate style (will be processed by build_styles)
+		if ( isset( $attributes['style'] ) && is_array( $attributes['style'] ) ) {
+			$safe_attributes['style'] = $attributes['style']; // build_styles will handle validation
+		}
+		
+		return $safe_attributes;
 	}
 
 }
