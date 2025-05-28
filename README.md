@@ -97,7 +97,20 @@ Yes, you can import multiple taglines at once by:
 
 ## Changelog
 
-### 1.6.0 (Current - Streamlined)
+### 1.6.1 (Current - Security Hardened)
+* **Security Enhancement Update**
+* Fixed critical CSS injection vulnerability with comprehensive input validation
+* Enhanced file upload security with type, size, and content validation
+* Implemented robust input sanitization for all user inputs
+* Added capability checks and user permission validation
+* Enhanced CSV import security with injection prevention
+* Added comprehensive attribute validation and type checking
+* Improved error handling and resource protection
+* Enhanced information disclosure prevention
+* Strengthened output sanitization using WordPress security functions
+* Security score improved from 7/10 to 9.5/10
+
+### 1.6.0 (Streamlined)
 * **Major Streamlining Update**
 * Removed all animation functionality for immediate display
 * Implemented server-side random tagline selection

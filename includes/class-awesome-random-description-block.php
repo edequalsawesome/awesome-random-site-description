@@ -28,7 +28,7 @@ class Awesome_Random_Description_Block {
 	 *
 	 * @var string
 	 */
-	private $version = '1.6.0';
+	private $version = '1.6.1';
 
 	/**
 	 * Plugin slug
