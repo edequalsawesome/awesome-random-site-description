@@ -108,7 +108,6 @@ Yes, you can import multiple taglines at once by:
 * Improved error handling and resource protection
 * Enhanced information disclosure prevention
 * Strengthened output sanitization using WordPress security functions
-* Security score improved from 7/10 to 9.5/10
 
 ### 1.6.0 (Streamlined)
 * **Major Streamlining Update**
