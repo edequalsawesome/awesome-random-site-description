@@ -98,7 +98,14 @@ Yes, you can import multiple taglines at once by:
 
 ## Changelog
 
-### 1.7.0 (Current - Text Alignment Support)
+### 1.7.1 (Current - Multiple Block Fix)
+* **Bug Fix for Multiple Block Instances**
+* Fixed issue where multiple blocks on the same page would display the same random tagline
+* Replaced array_rand() with wp_rand() to ensure each block gets a truly random selection
+* Each block instance now displays different random taglines independently
+* Improved randomization algorithm for better distribution across multiple blocks
+
+### 1.7.0 (Text Alignment Support)
 * **Text Alignment Feature Added**
 * Added full text alignment controls with left, center, right, and justify options
 * Implemented standard WordPress block toolbar alignment buttons

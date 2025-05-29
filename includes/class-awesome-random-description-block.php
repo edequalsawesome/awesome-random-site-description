@@ -28,7 +28,7 @@ class Awesome_Random_Description_Block {
 	 *
 	 * @var string
 	 */
-	private $version = '1.7.0';
+	private $version = '1.7.1';
 
 	/**
 	 * Plugin slug
@@ -153,7 +153,9 @@ class Awesome_Random_Description_Block {
 		// Select a random tagline on the server-side to prevent flash
 		$current_tagline = '';
 		if ( ! empty( $taglines ) ) {
-			$random_index = array_rand( $taglines );
+			// Use wp_rand() instead of array_rand() to ensure each block instance 
+			// gets a different random selection on the same page
+			$random_index = wp_rand( 0, count( $taglines ) - 1 );
 			$current_tagline = wp_kses_post( $taglines[ $random_index ] );
 		}
 
