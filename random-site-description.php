@@ -15,7 +15,7 @@
  * Plugin Name:       Awesome Random Description Block
  * Plugin URI:        https://edequalsaweso.me/random-site-description
  * Description:       This will add a block that can cycle through a bunch of different site descriptions for you every time the page is reloaded
- * Version:           1.6.1
+ * Version:           1.7.0
  * Author:            eD! Thomas
  * Author URI:        https://edequalsaweso.me/
  * License:           GPL-3.0+
