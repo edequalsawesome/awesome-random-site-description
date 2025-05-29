@@ -12,7 +12,9 @@ import {
 } from '@wordpress/components';
 import {
     useBlockProps,
-    InspectorControls
+    InspectorControls,
+    BlockControls,
+    AlignmentToolbar
 } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
@@ -28,6 +30,7 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes, clientId, isSelected }) {
     const {
         taglines = [],
+        textAlign,
         style
     } = attributes;
 
@@ -190,13 +193,23 @@ export default function Edit({ attributes, setAttributes, clientId, isSelected }
     }, [siteDescription]);
 
     // Block props with styles
-    const blockProps = useBlockProps();
+    const blockProps = useBlockProps({
+        className: textAlign ? `has-text-align-${textAlign}` : '',
+        style: { textAlign }
+    });
 
     // Combine classes
-    blockProps.className = `${blockProps.className} ${attributes.className || ''}`;
+    blockProps.className = `${blockProps.className} ${attributes.className || ''}`.trim();
 
     return (
         <>
+            <BlockControls>
+                <AlignmentToolbar
+                    value={textAlign}
+                    onChange={(value) => setAttributes({ textAlign: value })}
+                />
+            </BlockControls>
+            
             <InspectorControls>
                 <PanelBody title={__('Taglines', 'awesome-random-description-block')} initialOpen={true}>
                     <div className="taglines-panel">

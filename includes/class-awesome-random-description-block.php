@@ -28,7 +28,7 @@ class Awesome_Random_Description_Block {
 	 *
 	 * @var string
 	 */
-	private $version = '1.6.1';
+	private $version = '1.7.0';
 
 	/**
 	 * Plugin slug
@@ -147,6 +147,7 @@ class Awesome_Random_Description_Block {
 		$class_name = isset( $safe_attributes['className'] ) ? $safe_attributes['className'] : '';
 		$style = isset( $safe_attributes['style'] ) ? $this->build_styles( $safe_attributes ) : '';
 		$align = isset( $safe_attributes['align'] ) ? 'align' . $safe_attributes['align'] : '';
+		$text_align = isset( $safe_attributes['textAlign'] ) ? $safe_attributes['textAlign'] : '';
 		$taglines = isset( $safe_attributes['taglines'] ) ? $safe_attributes['taglines'] : array();
 		
 		// Select a random tagline on the server-side to prevent flash
@@ -159,6 +160,11 @@ class Awesome_Random_Description_Block {
 		// Add the align class if it exists
 		if ( ! empty( $align ) ) {
 			$class_name .= ' ' . $align;
+		}
+
+		// Add the text align class if it exists
+		if ( ! empty( $text_align ) ) {
+			$class_name .= ' has-text-align-' . $text_align;
 		}
 
 		// Build the block HTML with accessibility attributes
@@ -312,6 +318,14 @@ class Awesome_Random_Description_Block {
 			$allowed_alignments = array( 'left', 'center', 'right', 'wide', 'full' );
 			if ( in_array( $attributes['align'], $allowed_alignments, true ) ) {
 				$safe_attributes['align'] = sanitize_key( $attributes['align'] );
+			}
+		}
+		
+		// Validate textAlign
+		if ( isset( $attributes['textAlign'] ) && is_string( $attributes['textAlign'] ) ) {
+			$allowed_text_alignments = array( 'left', 'center', 'right', 'justify' );
+			if ( in_array( $attributes['textAlign'], $allowed_text_alignments, true ) ) {
+				$safe_attributes['textAlign'] = sanitize_key( $attributes['textAlign'] );
 			}
 		}
 		

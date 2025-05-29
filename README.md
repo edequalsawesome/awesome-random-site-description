@@ -9,6 +9,7 @@ The Awesome Random Description Block allows you to create a collection of taglin
 ## Features
 
 - **Easy Management**: Add, edit, and remove taglines directly from the Gutenberg editor
+- **Text Alignment Controls**: Full support for left, center, right, and justify text alignment
 - **Bulk Import**: Import multiple taglines at once via text input or CSV file upload
 - **Export Functionality**: Export your taglines to CSV for backup or sharing
 - **Immediate Display**: Random taglines appear instantly with no flash or loading delay
@@ -36,7 +37,7 @@ The Awesome Random Description Block allows you to create a collection of taglin
 
 1. **Add the Block**: Insert the "Awesome Random Description" block from the Gutenberg block inserter
 2. **Add Taglines**: Use the block settings panel to add your taglines one by one, or use the bulk import feature
-3. **Customize**: Adjust typography, colors, spacing, and animation settings to match your theme
+3. **Customize**: Adjust typography, colors, spacing, text alignment, and other styling options to match your theme
 4. **Publish**: Save your page and watch your taglines rotate randomly on each page load
 
 ## Performance & Accessibility
@@ -74,7 +75,7 @@ Absolutely! The block supports all WordPress block styling options including:
 - Typography (font size, weight, style)
 - Colors (text and background)
 - Spacing (margin and padding)
-- Alignment options
+- Text alignment (left, center, right, justify)
 - Custom CSS classes
 
 ### Can I export my taglines?
@@ -97,7 +98,16 @@ Yes, you can import multiple taglines at once by:
 
 ## Changelog
 
-### 1.6.1 (Current - Security Hardened)
+### 1.7.0 (Current - Text Alignment Support)
+* **Text Alignment Feature Added**
+* Added full text alignment controls with left, center, right, and justify options
+* Implemented standard WordPress block toolbar alignment buttons
+* Added proper text alignment validation and sanitization
+* Enhanced CSS styling with explicit text alignment class support
+* Improved block compatibility with WordPress theme standards
+* Maintains all existing functionality while adding new alignment capabilities
+
+### 1.6.1 (Security Hardened)
 * **Security Enhancement Update**
 * Fixed critical CSS injection vulnerability with comprehensive input validation
 * Enhanced file upload security with type, size, and content validation
